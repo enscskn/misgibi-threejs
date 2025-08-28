@@ -8,10 +8,6 @@
       "destination": "/blog"
     },
     {
-      "source": "/resume",
-      "destination": "/resume"
-    },
-    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
@@ -69,8 +65,5 @@
     "env": {
       "NODE_ENV": "production"
     }
-  },
-  "deployment": {
-    "autoAlias": true
   }
 }
