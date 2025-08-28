@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import "./styles/Blog.css";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
-import Navbar from "./Navbar";
 import Cursor from "./Cursor";
 import SocialIcons from "./SocialIcons";
 import { MdArrowBack, MdClose, MdCalendarToday, MdPerson, MdAccessTime, MdTag } from "react-icons/md";
