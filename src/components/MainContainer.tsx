@@ -1,4 +1,4 @@
-import { useEffect, useState, lazy, Suspense, PropsWithChildren } from "react";
+import { useEffect, useState, Suspense, PropsWithChildren } from "react";
 import Landing from "./Landing";
 import About from "./About";
 import WhatIDo from "./WhatIDo";
@@ -13,8 +13,6 @@ import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
 import setSplitText from "./utils/splitText";
 import "./styles/style.css";
-
-const CharacterModel = lazy(() => import("./Character"));
 
 const MainContainer = ({ children }: PropsWithChildren) => {
   const [isDesktopView, setIsDesktopView] = useState<boolean>(
