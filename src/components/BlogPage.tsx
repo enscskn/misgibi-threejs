@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import "./styles/Blog.css";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import Cursor from "./Cursor";
 import SocialIcons from "./SocialIcons";
-import { MdArrowBack, MdClose, MdCalendarToday, MdPerson, MdAccessTime, MdTag } from "react-icons/md";
+import { MdArrowBack, MdClose, MdCalendarToday, MdPerson, MdAccessTime, MdTag, MdSearch, MdFilterList } from "react-icons/md";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,43 +21,50 @@ interface BlogPost {
   image: string;
   slug: string;
   seoDescription: string;
+  featured?: boolean;
 }
 
 const BlogPage = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("Tümü");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [sortBy, setSortBy] = useState<"date" | "title" | "readTime">("date");
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isSearchFocused, setIsSearchFocused] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const searchRef = useRef<HTMLInputElement>(null);
 
   const blogPosts: BlogPost[] = [
     {
       id: 1,
       title: "React 18 ile Modern Web Uygulamaları Geliştirme",
       excerpt: "React 18'in yeni özelliklerini keşfedin ve performanslı web uygulamaları nasıl geliştirileceğini öğrenin.",
-      content: "React 18, web geliştirme dünyasında devrim yaratan yeni özellikler getiriyor. Concurrent rendering, automatic batching ve suspense for data fetching gibi özellikler sayesinde daha hızlı ve responsive uygulamalar geliştirebilirsiniz. Bu makalede React 18'in temel özelliklerini, performans iyileştirmelerini ve best practices'leri detaylı olarak inceleyeceğiz.\n\nReact 18'in en önemli özelliklerinden biri Concurrent Features'dır. Bu özellik sayesinde React, kullanıcı etkileşimlerini önceliklendirir ve daha akıcı bir deneyim sunar. Automatic batching ile state güncellemeleri otomatik olarak gruplandırılır ve gereksiz re-render'lar önlenir.\n\nSuspense for data fetching ile veri yükleme durumları daha iyi yönetilir ve loading states daha kolay implement edilir. Bu özellikler sayesinde modern web uygulamaları çok daha performanslı ve kullanıcı dostu hale gelir.",
+      content: "React 18, web geliştirme dünyasında devrim yaratan yeni özellikler getiriyor. Concurrent rendering, automatic batching ve suspense for data fetching gibi özellikler sayesinde daha hızlı ve responsive uygulamalar geliştirebilirsiniz.\n\nReact 18'in en önemli özelliklerinden biri Concurrent Features'dır. Bu özellik sayesinde React, kullanıcı etkileşimlerini önceliklendirir ve daha akıcı bir deneyim sunar. Automatic batching ile state güncellemeleri otomatik olarak gruplandırılır ve gereksiz re-render'lar önlenir.\n\nSuspense for data fetching ile veri yükleme durumları daha iyi yönetilir ve loading states daha kolay implement edilir. Bu özellikler sayesinde modern web uygulamaları çok daha performanslı ve kullanıcı dostu hale gelir.",
       author: "Enes Coşkun",
       publishDate: "2024-12-15",
       readTime: "8 dk",
       category: "Web Geliştirme",
-      tags: ["React", "JavaScript", "Frontend", "Performance"],
+      tags: ["React", "JavaScript", "Frontend", "Performance", "Concurrent"],
       image: "/teams/teams1.avif",
       slug: "react-18-modern-web-uygulamalari",
-      seoDescription: "React 18 ile modern web uygulamaları geliştirme rehberi. Yeni özellikler, performans optimizasyonu ve best practices."
+      seoDescription: "React 18 ile modern web uygulamaları geliştirme rehberi. Yeni özellikler, performans optimizasyonu ve best practices.",
+      featured: true
     },
     {
       id: 2,
       title: "TypeScript ile Güvenli Kod Yazımı",
       excerpt: "TypeScript kullanarak daha güvenli ve sürdürülebilir kod nasıl yazılır? Detaylı rehber ve örnekler.",
-      content: "TypeScript, JavaScript'in tip güvenli versiyonu olarak modern web geliştirmede vazgeçilmez hale geldi. Bu makalede TypeScript'in temel kavramlarını, tip tanımlamalarını, interface'leri ve advanced type features'ları öğreneceksiniz. Gerçek dünya projelerinde TypeScript nasıl kullanılır ve hangi best practices'ler uygulanır?\n\nTypeScript'in en büyük avantajlarından biri compile-time error checking'dir. Bu sayede runtime'da karşılaşabileceğiniz hataları geliştirme aşamasında yakalayabilirsiniz. Interface'ler ve type aliases ile kodunuz daha okunabilir ve maintainable hale gelir.\n\nAdvanced type features olarak generic types, union types, intersection types ve conditional types gibi güçlü özellikler bulunur. Bu özellikler sayesinde çok daha esnek ve type-safe kod yazabilirsiniz.",
+      content: "TypeScript, JavaScript'in tip güvenli versiyonu olarak modern web geliştirmede vazgeçilmez hale geldi. Bu makalede TypeScript'in temel kavramlarını, tip tanımlamalarını, interface'leri ve advanced type features'ları öğreneceksiniz.\n\nTypeScript'in en büyük avantajlarından biri compile-time error checking'dir. Bu sayede runtime'da karşılaşabileceğiniz hataları geliştirme aşamasında yakalayabilirsiniz. Interface'ler ve type aliases ile kodunuz daha okunabilir ve maintainable hale gelir.\n\nAdvanced type features olarak generic types, union types, intersection types ve conditional types gibi güçlü özellikler bulunur. Bu özellikler sayesinde çok daha esnek ve type-safe kod yazabilirsiniz.",
       author: "Ahmetcan Altıntaş",
       publishDate: "2024-12-12",
       readTime: "12 dk",
       category: "Programlama",
-      tags: ["TypeScript", "JavaScript", "Code Quality", "Best Practices"],
+      tags: ["TypeScript", "JavaScript", "Code Quality", "Best Practices", "Type Safety"],
       image: "/teams/teams2.avif",
       slug: "typescript-guvenli-kod-yazimi",
-      seoDescription: "TypeScript ile güvenli kod yazımı. Tip güvenliği, best practices ve gerçek dünya örnekleri."
+      seoDescription: "TypeScript ile güvenli kod yazımı. Tip güvenliği, best practices ve gerçek dünya örnekleri.",
+      featured: true
     },
     {
       id: 3,
@@ -68,10 +75,11 @@ const BlogPage = () => {
       publishDate: "2024-12-10",
       readTime: "10 dk",
       category: "SEO & Marketing",
-      tags: ["Next.js", "SEO", "Performance", "Marketing"],
+      tags: ["Next.js", "SEO", "Performance", "Marketing", "Core Web Vitals"],
       image: "/teams/teams3.avif",
       slug: "nextjs-14-seo-optimizasyonu",
-      seoDescription: "Next.js 14 ile SEO optimizasyonu. Server-side rendering, meta tags ve performans optimizasyonu."
+      seoDescription: "Next.js 14 ile SEO optimizasyonu. Server-side rendering, meta tags ve performans optimizasyonu.",
+      featured: false
     },
     {
       id: 4,
@@ -82,10 +90,11 @@ const BlogPage = () => {
       publishDate: "2024-12-08",
       readTime: "15 dk",
       category: "UI/UX Tasarım",
-      tags: ["UI/UX", "Design", "User Experience", "Figma"],
+      tags: ["UI/UX", "Design", "User Experience", "Figma", "Design Systems"],
       image: "/teams/teams4.avif",
       slug: "ui-ux-tasariminda-kullanici-deneyimi",
-      seoDescription: "UI/UX tasarımında kullanıcı deneyimi. Modern tasarım prensipleri ve best practices."
+      seoDescription: "UI/UX tasarımında kullanıcı deneyimi. Modern tasarım prensipleri ve best practices.",
+      featured: false
     },
     {
       id: 5,
@@ -96,10 +105,11 @@ const BlogPage = () => {
       publishDate: "2024-12-05",
       readTime: "14 dk",
       category: "Mobil Geliştirme",
-      tags: ["React Native", "Mobile", "Cross-platform", "Performance"],
+      tags: ["React Native", "Mobile", "Cross-platform", "Performance", "Navigation"],
       image: "/teams/teams1.avif",
       slug: "mobil-uygulama-gelistirmede-react-native",
-      seoDescription: "React Native ile mobil uygulama geliştirme. Cross-platform geliştirme ve performans optimizasyonu."
+      seoDescription: "React Native ile mobil uygulama geliştirme. Cross-platform geliştirme ve performans optimizasyonu.",
+      featured: false
     },
     {
       id: 6,
@@ -110,37 +120,104 @@ const BlogPage = () => {
       publishDate: "2024-12-03",
       readTime: "18 dk",
       category: "Güvenlik",
-      tags: ["Security", "Web Security", "Best Practices", "Authentication"],
+      tags: ["Security", "Web Security", "Best Practices", "Authentication", "OWASP"],
       image: "/teams/teams2.avif",
       slug: "web-guvenligi-ve-guvenlik-aciklari",
-      seoDescription: "Web güvenliği ve güvenlik açıkları. Güvenlik best practices ve korunma yöntemleri."
+      seoDescription: "Web güvenliği ve güvenlik açıkları. Güvenlik best practices ve korunma yöntemleri.",
+      featured: false
     }
   ];
 
   const categories = ["Tümü", "Web Geliştirme", "Programlama", "SEO & Marketing", "UI/UX Tasarım", "Mobil Geliştirme", "Güvenlik"];
+  const sortOptions = [
+    { value: "date", label: "Tarihe Göre" },
+    { value: "title", label: "Başlığa Göre" },
+    { value: "readTime", label: "Okuma Süresine Göre" }
+  ];
 
-  const filteredPosts = blogPosts.filter(post => {
-    const matchesCategory = selectedCategory === "Tümü" || post.category === selectedCategory;
-    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesCategory && matchesSearch;
-  });
+  // Tüm tag'leri topla
+  const allTags = useMemo(() => {
+    const tags = new Set<string>();
+    blogPosts.forEach(post => {
+      post.tags.forEach(tag => tags.add(tag));
+    });
+    return Array.from(tags).sort();
+  }, []);
+
+  // Filtreleme ve sıralama
+  const filteredAndSortedPosts = useMemo(() => {
+    let filtered = blogPosts.filter(post => {
+      const matchesCategory = selectedCategory === "Tümü" || post.category === selectedCategory;
+      const matchesSearch = searchQuery === "" || 
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+      const matchesTags = selectedTags.length === 0 || 
+        selectedTags.some(tag => post.tags.includes(tag));
+      return matchesCategory && matchesSearch && matchesTags;
+    });
+
+    // Sıralama
+    filtered.sort((a, b) => {
+      switch (sortBy) {
+        case "date":
+          return new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime();
+        case "title":
+          return a.title.localeCompare(b.title, 'tr');
+        case "readTime":
+          return parseInt(a.readTime) - parseInt(b.readTime);
+        default:
+          return 0;
+      }
+    });
+
+    return filtered;
+  }, [blogPosts, selectedCategory, searchQuery, selectedTags, sortBy]);
+
+  // Tag seçimi
+  const toggleTag = useCallback((tag: string) => {
+    setSelectedTags(prev => 
+      prev.includes(tag) 
+        ? prev.filter(t => t !== tag)
+        : [...prev, tag]
+    );
+  }, []);
+
+  // Arama temizleme
+  const clearSearch = useCallback(() => {
+    setSearchQuery("");
+    setSelectedTags([]);
+    if (searchRef.current) {
+      searchRef.current.focus();
+    }
+  }, []);
+
+  // Filtreleri sıfırlama
+  const resetFilters = useCallback(() => {
+    setSelectedCategory("Tümü");
+    setSearchQuery("");
+    setSelectedTags([]);
+    setSortBy("date");
+  }, []);
 
   useEffect(() => {
+    // Blog sayfası açıldığında body ve html overflow'u düzelt
+    document.body.classList.add('blog-page-active');
+    document.documentElement.classList.add('blog-page-active');
+    
     if (containerRef.current) {
       gsap.fromTo(
         ".blog-post-card",
         { 
-          y: 100, 
+          y: 50, 
           opacity: 0 
         },
         {
           y: 0,
           opacity: 1,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: "power3.out",
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: ".blog-content",
             start: "top 80%",
@@ -150,7 +227,13 @@ const BlogPage = () => {
         }
       );
     }
-  }, [filteredPosts]);
+
+    // Cleanup function
+    return () => {
+      document.body.classList.remove('blog-page-active');
+      document.documentElement.classList.remove('blog-page-active');
+    };
+  }, [filteredAndSortedPosts]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -173,10 +256,6 @@ const BlogPage = () => {
     document.body.style.overflow = 'unset';
   };
 
-  const handleCardClick = (post: BlogPost) => {
-    openModal(post);
-  };
-
   return (
     <div className="blog-page">
       <Cursor />
@@ -193,41 +272,123 @@ const BlogPage = () => {
         <div className="blog-header">
           <h2>
             Blog & <span>Makaleler</span>
-            <br /> Teknoloji Rehberi
           </h2>
+          <p>Teknoloji dünyasından en güncel bilgiler ve rehberler</p>
         </div>
         
         <div className="blog-filters">
           <div className="search-container">
-            <input
-              type="text"
-              placeholder="Blog yazılarında ara..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="blog-search"
-            />
+            <div className={`search-input-wrapper ${isSearchFocused ? 'focused' : ''}`}>
+              <MdSearch className="search-icon" />
+              <input
+                ref={searchRef}
+                type="text"
+                placeholder="Blog yazılarında ara..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setIsSearchFocused(false)}
+                className="blog-search"
+              />
+              {searchQuery && (
+                <button className="clear-search" onClick={clearSearch}>
+                  ×
+                </button>
+              )}
+            </div>
+            
+            <div className="sort-controls">
+              <MdFilterList className="sort-icon" />
+              <select 
+                value={sortBy} 
+                onChange={(e) => setSortBy(e.target.value as "date" | "title" | "readTime")}
+                className="sort-select"
+              >
+                {sortOptions.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
           
-          <div className="category-filters">
-            {categories.map((category) => (
+          <div className="filter-controls">
+            <div className="category-filters">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  className={`category-filter ${selectedCategory === category ? 'active' : ''}`}
+                  onClick={() => setSelectedCategory(category)}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          {selectedTags.length > 0 && (
+            <div className="selected-tags">
+              <span className="selected-tags-label">Seçili Tag'ler:</span>
+              {selectedTags.map(tag => (
+                <button
+                  key={tag}
+                  className="selected-tag"
+                  onClick={() => toggleTag(tag)}
+                >
+                  {tag} ×
+                </button>
+              ))}
+              <button className="clear-tags" onClick={() => setSelectedTags([])}>
+                Tümünü Temizle
+              </button>
+            </div>
+          )}
+          
+          <div className="tag-filters">
+            {allTags.map((tag) => (
               <button
-                key={category}
-                className={`category-filter ${selectedCategory === category ? 'active' : ''}`}
-                onClick={() => setSelectedCategory(category)}
+                key={tag}
+                className={`tag-filter ${selectedTags.includes(tag) ? 'active' : ''}`}
+                onClick={() => toggleTag(tag)}
               >
-                {category}
+                {tag}
               </button>
             ))}
           </div>
+          
+          {(searchQuery || selectedTags.length > 0 || selectedCategory !== "Tümü") && (
+            <div className="filter-summary">
+              <span>Aktif Filtreler:</span>
+              {selectedCategory !== "Tümü" && (
+                <span className="filter-badge">Kategori: {selectedCategory}</span>
+              )}
+              {searchQuery && (
+                <span className="filter-badge">Arama: "{searchQuery}"</span>
+              )}
+              {selectedTags.length > 0 && (
+                <span className="filter-badge">Tag'ler: {selectedTags.join(", ")}</span>
+              )}
+              <button className="reset-filters" onClick={resetFilters}>
+                Filtreleri Sıfırla
+              </button>
+            </div>
+          )}
         </div>
         
         <div className="blog-grid" ref={containerRef}>
-          {filteredPosts.map((post) => (
+          {filteredAndSortedPosts.map((post) => (
             <article 
               key={post.id} 
-              className="blog-post-card"
-              onClick={() => handleCardClick(post)}
+              className={`blog-post-card ${post.featured ? 'featured' : ''}`}
+              onClick={() => openModal(post)}
             >
+              {post.featured && (
+                <div className="featured-badge">
+                  <span>Öne Çıkan</span>
+                </div>
+              )}
+              
               <div className="blog-post-image">
                 <img src={post.image} alt={post.title} />
                 <div className="blog-post-category">
@@ -249,25 +410,43 @@ const BlogPage = () => {
                 <p className="blog-post-excerpt">{post.excerpt}</p>
                 
                 <div className="blog-post-tags">
-                  {post.tags.slice(0, 3).map((tag, index) => (
+                  {post.tags.slice(0, 4).map((tag, index) => (
                     <span key={index} className="blog-post-tag">
                       {tag}
                     </span>
                   ))}
+                  {post.tags.length > 4 && (
+                    <span className="blog-post-tag more-tags">
+                      +{post.tags.length - 4}
+                    </span>
+                  )}
                 </div>
                 
                 <div className="blog-post-readmore">
-                  Detayları Gör →
+                  Devamını Oku →
                 </div>
               </div>
             </article>
           ))}
         </div>
         
-        {filteredPosts.length === 0 && (
+        {filteredAndSortedPosts.length === 0 && (
           <div className="blog-no-results">
             <h3>Arama sonucu bulunamadı</h3>
-            <p>Farklı anahtar kelimeler deneyin veya kategori filtrelerini değiştirin.</p>
+            <p>Farklı anahtar kelimeler deneyin veya filtreleri değiştirin.</p>
+            <button className="reset-filters-btn" onClick={resetFilters}>
+              Filtreleri Sıfırla
+            </button>
+          </div>
+        )}
+        
+        {filteredAndSortedPosts.length > 0 && (
+          <div className="blog-results-info">
+            <p>
+              {filteredAndSortedPosts.length} blog yazısı bulundu
+              {searchQuery && ` "${searchQuery}" araması için`}
+              {selectedCategory !== "Tümü" && ` "${selectedCategory}" kategorisinde`}
+            </p>
           </div>
         )}
       </div>
@@ -285,6 +464,11 @@ const BlogPage = () => {
               <div className="blog-modal-category">
                 {selectedPost.category}
               </div>
+              {selectedPost.featured && (
+                <div className="modal-featured-badge">
+                  <span>Öne Çıkan</span>
+                </div>
+              )}
             </div>
             
             <div className="blog-modal-content">

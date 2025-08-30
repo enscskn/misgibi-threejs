@@ -396,6 +396,18 @@
   .reviews-arrows {
     max-width: 150px;
   }
+  
+  /* Mobilde dots'u gizle */
+  .reviews-dots {
+    display: none;
+  }
+  
+  /* Mobilde arrows'u ortala */
+  .reviews-arrows {
+    margin: 0 auto;
+    justify-content: center;
+    gap: 40px;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -432,6 +444,7 @@
   
   .reviews-arrows {
     max-width: 120px;
+    gap: 30px;
   }
 }
 

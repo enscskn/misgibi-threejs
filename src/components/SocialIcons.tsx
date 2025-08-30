@@ -58,7 +58,7 @@ const SocialIcons = () => {
 
   return (
     <div className="icons-section">
-      <div className="social-icons" data-cursor="icons" id="social">
+      <div className="social-icons" id="social">
         <span>
           <a href="https://github.com/misgibisoftware" target="_blank">
             <FaGithub />
