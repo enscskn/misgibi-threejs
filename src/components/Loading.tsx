@@ -62,8 +62,8 @@ const Loading = ({ percent }: { percent: number }) => {
       <div className="loading-screen">
         <div className="loading-marquee">
           <Marquee>
-            <span> Yaratıcı Geliştirici</span> <span>Yaratıcı Tasarımcı</span>
-            <span> Yaratıcı Geliştirici</span> <span>Yaratıcı Tasarımcı</span>
+            <span> MİSGİB! Software</span> <span>MİSGİB! Software</span>
+            <span> MİSGİB! Software</span> <span>MİSGİB! Software</span>
           </Marquee>
         </div>
         <div
@@ -75,13 +75,13 @@ const Loading = ({ percent }: { percent: number }) => {
             <div className="loading-container">
               <div className="loading-content">
                 <div className="loading-content-in">
-                  Loading <span>{percent}%</span>
+                  Yükleniyor  <span>{percent}%</span>
                 </div>
               </div>
               <div className="loading-box"></div>
             </div>
             <div className="loading-content2">
-              <span>Welcome</span>
+              <span>Hoş Geldiniz</span>
             </div>
           </div>
         </div>

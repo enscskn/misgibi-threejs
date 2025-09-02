@@ -23,7 +23,7 @@ const Contact = () => {
           <div className="contact-box">
             <h4>Sosyal Medya</h4>
             <a
-              href="https://github.com/misgibisoftware"
+              href="https://github.com/orgs/mis-gibi"
               target="_blank"
               data-cursor="disable"
               className="contact-social"
@@ -31,7 +31,7 @@ const Contact = () => {
               Github <MdArrowOutward />
             </a>
             <a
-              href="https://www.linkedin.com/company/misgibisoftware"
+              href="https://www.linkedin.com/company/mi%CC%87sgi%CC%87bi"
               target="_blank"
               data-cursor="disable"
               className="contact-social"
@@ -39,7 +39,7 @@ const Contact = () => {
               Linkedin <MdArrowOutward />
             </a>
             <a
-              href="https://x.com/misgibisoftware"
+              href="https://x.com/misgibi17"
               target="_blank"
               data-cursor="disable"
               className="contact-social"
@@ -47,7 +47,7 @@ const Contact = () => {
               Twitter <MdArrowOutward />
             </a>
             <a
-              href="https://www.instagram.com/misgibisoftware"
+              href="https://www.instagram.com/misgibi17"
               target="_blank"
               data-cursor="disable"
               className="contact-social"

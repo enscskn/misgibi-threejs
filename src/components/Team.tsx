@@ -27,17 +27,17 @@ const Team = () => {
       name: "Enes Coşkun",
       role: "Team Lead",
       description: "10+ yıl yazılım geliştirme deneyimi ile Misgibi Software'in kurucusu. React, Node.js ve cloud teknolojileri konusunda uzman. Müşteri odaklı çözümler geliştirmeye odaklanıyor.",
-      skills: ["React", "Node.js", "AWS", "Leadership", "Strategy"],
+      skills: ["React", "Node.js", "AWS", "Leadership", "Strategy", "Frontend", "Backend", "Full-Stack"],
       image: "/teams/teams1.avif",
-      linkedin: "https://linkedin.com/in/enescoskun",
-      github: "https://github.com/enescoskun"
+      linkedin: "https://linkedin.com/in/enscskn",
+      github: "https://github.com/enscskn"
     },
     {
       id: 2,
       name: "Ahmetcan Altıntaş",
       role: "Senior Full-Stack Developer",
       description: "Kullanıcı deneyimi ve arayüz tasarımında 8+ yıl deneyim. Figma, Adobe Creative Suite ve kullanıcı araştırması konularında uzman. Kullanıcı odaklı tasarım yaklaşımı ile projeleri yönetiyor.",
-      skills: ["Figma", "Adobe XD", "User Research", "Prototyping", "Design Systems"],
+      skills: ["React", "PHP", "Laravel", "MySQL", "AWS", "Leadership", "Strategy", "Frontend", "Backend", "Full-Stack"],
       image: "/teams/teams2.avif",
       linkedin: "https://linkedin.com/in/ahmetcanaltintas",
       github: "https://github.com/ahmetcanaltintas"
@@ -47,7 +47,7 @@ const Team = () => {
       name: "Enes Balcı",
       role: "Project Manager",
       description: "Full-stack geliştirme konusunda 6+ yıl deneyim. React, Next.js, TypeScript ve backend teknolojilerinde uzman. Performanslı ve ölçeklenebilir uygulamalar geliştiriyor.",
-      skills: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL"],
+      skills: ["Leadership", "Strategy", "Project Management", "Team Management", "Communication", "Problem Solving"],
       image: "/teams/teams3.avif",
       linkedin: "https://linkedin.com/in/enesbalci",
       github: "https://github.com/enesbalci"
@@ -57,7 +57,7 @@ const Team = () => {
       name: "Ahmet Harun Şimşek",
       role: "Backend Developer",
       description: "iOS ve Android platformları için 5+ yıl mobil uygulama geliştirme deneyimi. React Native ve native geliştirme konularında uzman. Kullanıcı dostu mobil deneyimler yaratıyor.",
-      skills: ["React Native", "iOS", "Android", "Swift", "Kotlin"],
+      skills: ["Python", "AI", "Data Science"],
       image: "/teams/teams4.avif",
       linkedin: "https://linkedin.com/in/ahmetharunsimsek",
       github: "https://github.com/ahmetharunsimsek"
@@ -67,8 +67,8 @@ const Team = () => {
       name: "Yunus Eren Bilici",
       role: "Frontend Developer",
       description: "iOS ve Android platformları için 5+ yıl mobil uygulama geliştirme deneyimi. React Native ve native geliştirme konularında uzman. Kullanıcı dostu mobil deneyimler yaratıyor.",
-      skills: ["React Native", "iOS", "Android", "Swift", "Kotlin"],
-      image: "/teams/teams4.avif",
+      skills: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL"],
+      image: "/teams/teams5.avif",
       linkedin: "https://linkedin.com/in/yunuserenbilici",
       github: "https://github.com/yunuserenbilici"
     },
@@ -77,8 +77,8 @@ const Team = () => {
       name: "Sıraç Alp Özkan",
       role: "Project Manager",
       description: "iOS ve Android platformları için 5+ yıl mobil uygulama geliştirme deneyimi. React Native ve native geliştirme konularında uzman. Kullanıcı dostu mobil deneyimler yaratıyor.",
-      skills: ["React Native", "iOS", "Android", "Swift", "Kotlin"],
-      image: "/teams/teams4.avif",
+      skills: ["Leadership", "Strategy", "Project Management", "Team Management"],
+      image: "/teams/teams6.avif",
       linkedin: "https://linkedin.com/in/sircalp",
       github: "https://github.com/sircalp"
     }

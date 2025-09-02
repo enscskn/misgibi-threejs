@@ -26,36 +26,36 @@ const CustomerReviews = () => {
   const customerReviews: CustomerReview[] = [
     {
       id: 1,
-      name: "Mehmet Yıldız",
-      company: "TechCorp",
-      role: "CTO",
+      name: "Kasım Aksoy",
+      company: "Kasım Aksoy Hukuk ve Danışmanlık",
+      role: "Hukuk Danışmanı",
       rating: 5,
-      review: "Misgibi Software ile çalışmak gerçekten harika bir deneyimdi. Projemizi zamanında ve bütçe dahilinde tamamladılar. Teknik uzmanlıkları ve müşteri odaklı yaklaşımları takdire şayan. Kesinlikle tavsiye ederim!",
-      project: "E-ticaret Platformu",
+      review: "Misgibi Software ile çalışmak gerçekten harika bir deneyimdi. Hukuk büromuz için geliştirdikleri web sitesi hem profesyonel hem de kullanıcı dostu. Teknik uzmanlıkları ve müşteri odaklı yaklaşımları takdire şayan. Kesinlikle tavsiye ederim!",
+      project: "Kasım Aksoy Hukuk ve Danışmanlık",
       image: "/teams/teams1.avif",
-      linkedin: "https://linkedin.com/in/mehmetyildiz"
+      linkedin: "https://linkedin.com/in/kasimaksoy"
     },
     {
       id: 2,
-      name: "Ayşe Demir",
-      company: "StartupHub",
-      role: "Kurucu",
+      name: "Ahmet Yılmaz",
+      company: "CodeM Solutions",
+      role: "Proje Yöneticisi",
       rating: 5,
-      review: "Startup'ımız için geliştirdikleri mobil uygulama mükemmel! Kullanıcı deneyimi çok iyi tasarlanmış ve performansı harika. Misgibi Software ekibi gerçekten işini biliyor.",
-      project: "Mobil Uygulama",
+      review: "Support Dashboard projemiz için geliştirdikleri çözüm mükemmel! Kullanıcı arayüzü çok kullanışlı ve performansı harika. Müşteri destek süreçlerimizi büyük ölçüde iyileştirdi. Misgibi Software ekibi gerçekten işini biliyor.",
+      project: "Support Dashboard",
       image: "/teams/teams2.avif",
-      linkedin: "https://linkedin.com/in/aysedemir"
+      linkedin: "https://linkedin.com/in/ahmetyilmaz"
     },
     {
       id: 3,
-      name: "Ali Kaya",
-      company: "DigitalAgency",
-      role: "Pazarlama Müdürü",
+      name: "Mehmet Özkan",
+      company: "Bursa Yakın Çekici",
+      role: "İşletme Sahibi",
       rating: 5,
-      review: "Web sitemizi sıfırdan tasarladılar ve sonuç muhteşem! SEO optimizasyonu, hız ve kullanıcı deneyimi konularında çok başarılılar. Müşteri memnuniyeti %100!",
-      project: "Kurumsal Website",
-      image: "/teams/teams3.avif",
-      linkedin: "https://linkedin.com/in/alikaya"
+      review: "Çekici hizmetlerimiz için tasarladıkları web sitesi çok başarılı! Müşterilerimiz artık kolayca hizmet alabiliyor ve online rezervasyon yapabiliyor. SEO optimizasyonu sayesinde müşteri sayımız arttı. Harika bir çalışma!",
+      project: "Bursa Yakın Çekici",
+      image: "/teams/teams4.avif",
+      linkedin: "https://linkedin.com/in/mehmetozkan"
     }
   ];
 

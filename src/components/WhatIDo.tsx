@@ -127,19 +127,17 @@ const WhatIDo = () => {
             </div>
             <div className="what-corner"></div>
             <div className="what-content-in">
-              <h3>UI/UX Tasarım</h3>
+              <h3>Dijital Dönüşüm</h3>
               <h4>Açıklama</h4>
               <p>
-                Kullanıcı deneyimini ön planda tutan modern tasarım çözümleri geliştiriyoruz. Figma, Adobe Creative Suite ve diğer tasarım araçları ile kullanıcı dostu arayüzler tasarlıyoruz. Wireframe'den prototipe, kullanıcı testlerinden final tasarıma kadar tüm süreçleri yönetiyoruz.
+                Dijital dönüşüm süreçlerini yöneten, kullanıcı deneyimini ön planda tutan modern tasarım çözümleri geliştiriyoruz. Figma, Adobe Creative Suite ve diğer tasarım araçları ile kullanıcı dostu arayüzler tasarlıyoruz. Wireframe'den prototipe, kullanıcı testlerinden final tasarıma kadar tüm süreçleri yönetiyoruz.
               </p>
               <h5>Teknolojiler & Araçlar</h5>
               <div className="what-content-flex">
-                <div className="what-tags">Figma</div>
-                <div className="what-tags">Adobe XD</div>
-                <div className="what-tags">UI Design</div>
-                <div className="what-tags">Prototyping</div>
-                <div className="what-tags">User Research</div>
-                <div className="what-tags">Design Systems</div>
+                <div className="what-tags">Kreatif</div>
+                <div className="what-tags">Yenilikçi</div>
+                <div className="what-tags">Kullanıcı Odaklı</div>
+                <div className="what-tags">İşletmeye Özel</div>
               </div>
               <div className="what-arrow"></div>
             </div>

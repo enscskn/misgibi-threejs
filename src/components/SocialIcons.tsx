@@ -60,27 +60,27 @@ const SocialIcons = () => {
     <div className="icons-section">
       <div className="social-icons" id="social">
         <span>
-          <a href="https://github.com/misgibisoftware" target="_blank">
+          <a href="https://github.com/orgs/mis-gibi" target="_blank">
             <FaGithub />
           </a>
         </span>
         <span>
-          <a href="https://www.linkedin.com/company/misgibisoftware" target="_blank">
+          <a href="https://www.linkedin.com/company/mi%CC%87sgi%CC%87bi" target="_blank">
             <FaLinkedinIn />
           </a>
         </span>
         <span>
-          <a href="https://x.com/misgibisoftware" target="_blank">
+          <a href="https://x.com/misgibi17" target="_blank">
             <FaXTwitter />
           </a>
         </span>
         <span>
-          <a href="https://www.instagram.com/misgibisoftware" target="_blank">
+          <a href="https://www.instagram.com/misgibi17" target="_blank">
             <FaInstagram />
           </a>
         </span>
       </div>
-      <a className="resume-button" href="https://wa.me/905321234567" target="_blank">
+      <a className="resume-button" href="https://wa.me/905511707953" target="_blank">
         <div>
           <HoverLinks text="WhatsApp" />
         </div>
